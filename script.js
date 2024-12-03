@@ -72,7 +72,7 @@ function playGame(){
         console.log(`You win! ${humanScore} - ${computerScore}`);
     }
     else if (humanScore < computerScore){
-        console.log(`You lose! ${computerScore} - ${playerScore}`);
+        console.log(`You lose! ${computerScore} - ${humanScore}`);
     }
     else if (humanScore === computerScore){
         console.log(`Draw! ${humanScore} - ${computerScore}`);
