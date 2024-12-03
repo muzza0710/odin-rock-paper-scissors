@@ -1,5 +1,8 @@
 const choices = ['rock', 'paper', 'scissors'];
 
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(){
     n = Math.floor(Math.random() * 3);
     return choices[n];
