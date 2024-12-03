@@ -9,56 +9,62 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let choice = prompt('choose one from: rock, paper, scissors').toLowerCase()
-    if (choices.includes(choice)){
-        return choice;
+    let choice = prompt('choose one from: rock, paper, scissors');
+    if (choice){
+        choice.trim().toLocaleLowerCase();
     }
-    else {
-        console.warn(choice,` not valid`);
-        return null;
-    }
+    return choice;
 }
 
 function playRound(humanChoice, computerChoice){
     if (humanChoice === computerChoice){
         console.log(`draw! you both picked ${humanChoice}`);
-        return;
     }
-    else {switch (humanChoice){
-        case 'rock':
-            if (computerChoice === 'paper'){
-                console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;
-            }
-            else if(computerChoice === 'scissors'){
-                console.log(`you win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-            break
-        
-        case 'paper':
-            if (computerChoice === 'scissors'){
-                console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;
-            }
-            else if(computerChoice === 'rock'){
-                console.log(`you win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-            break;
+    else if (humanChoice === null){
+        ++computerScore;
+        console.log(`choice invalid you forfeit this round`);
+    }
+    else if (choices.includes(humanChoice)) 
+        {switch (humanChoice){
+            case 'rock':
+                if (computerChoice === 'paper'){
+                    console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
+                    computerScore++;
+                }
+                else if(computerChoice === 'scissors'){
+                    console.log(`you win! ${humanChoice} beats ${computerChoice}`);
+                    humanScore++;
+                }
+                break
+            
+            case 'paper':
+                if (computerChoice === 'scissors'){
+                    ++computerScore;
+                    console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
+                }
+                else if(computerChoice === 'rock'){
+                    ++humanScore;
+                    console.log(`you win! ${humanChoice} beats ${computerChoice}`);
+                }
+                break;
 
-        case 'scissors':
-            if (computerChoice === 'rock'){
-                console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;
+            case 'scissors':
+                if (computerChoice === 'rock'){
+                    ++computerScore;
+                    console.log(`you lose! ${computerChoice} beats ${humanChoice}`);
+                }
+                else if(computerChoice === 'paper'){
+                    ++humanScore;
+                    console.log(`you win! ${humanChoice} beats ${computerChoice}`);
+                }
+                break;
             }
-            else if(computerChoice === 'paper'){
-                console.log(`you win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-            break;
-        }
     }
+    else{
+        ++computerScore;
+        console.log(`${humanChoice} is invalid! you Forteit this round`);
+    }
+    console.log(`Score: Human ${humanScore} | computer ${computerScore}`);
 }
 
 function playGame(){
